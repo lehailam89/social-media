@@ -40,6 +40,7 @@ exports.register = async (req, res) => {
     res.status(201).json({
       token,
       user: {
+        _id: user._id,
         id: user._id,
         email: user.email,
         firstName: user.firstName,
@@ -86,7 +87,8 @@ exports.login = async (req, res) => {
 
     res.json({
       token,
-      user: {
+      us_id: user._id,
+        er: {
         id: user._id,
         email: user.email,
         firstName: user.firstName,
@@ -105,7 +107,22 @@ exports.login = async (req, res) => {
 // @access  Private
 exports.getCurrentUser = async (req, res) => {
   try {
-    res.json({ user: req.user });
+    const user = await User.findById(req.userId).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    res.json({ 
+      user: {
+        _id: user._id,
+        id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        avatar: user.avatar,
+        bio: user.bio
+      }
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });

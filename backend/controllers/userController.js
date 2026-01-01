@@ -1,5 +1,22 @@
 const User = require('../models/User');
 
+// @desc    Get recent users
+// @route   GET /api/users/recent
+// @access  Public
+exports.getRecentUsers = async (req, res) => {
+  try {
+    const users = await User.find()
+      .select('firstName lastName profilePicture')
+      .sort({ createdAt: -1 })
+      .limit(10);
+    
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 // @desc    Get user profile
 // @route   GET /api/users/:userId
 // @access  Private

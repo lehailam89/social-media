@@ -38,4 +38,14 @@ router.delete('/:postId', auth, postController.deletePost);
 // @access  Private
 router.post('/:postId/like', auth, postController.likePost);
 
+// @route   POST /api/posts/:postId/pin
+// @desc    Pin/Unpin post
+// @access  Private
+router.post('/:postId/pin', auth, postController.pinPost);
+
+// @route   POST /api/posts/:postId/save
+// @desc    Save/Unsave post
+// @access  Private
+router.post('/:postId/save', auth, postController.savePost);
+
 module.exports = router;

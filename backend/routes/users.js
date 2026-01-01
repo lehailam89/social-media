@@ -3,6 +3,11 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const auth = require('../middleware/auth');
 
+// @route   GET /api/users/recent
+// @desc    Get recent users for login page
+// @access  Public
+router.get('/recent', userController.getRecentUsers);
+
 // @route   GET /api/users/search/query
 // @desc    Search users
 // @access  Private

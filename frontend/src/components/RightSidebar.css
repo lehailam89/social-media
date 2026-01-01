@@ -1,0 +1,236 @@
+.right-sidebar {
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 8px;
+  width: 100%;
+}
+
+.right-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.right-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.right-sidebar::-webkit-scrollbar-thumb {
+  background: #b0b3b8;
+  border-radius: 4px;
+}
+
+.right-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #8a8d91;
+}
+
+.right-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-section h3 {
+  color: #65676b;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 0 8px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  margin-bottom: 12px;
+}
+
+.section-header h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.see-all {
+  color: #1877f2;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.see-all:hover {
+  text-decoration: underline;
+}
+
+/* Friend Requests */
+.friend-request {
+  display: flex;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.friend-request img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.friend-request-info {
+  flex: 1;
+}
+
+.friend-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #050505;
+  margin: 0 0 4px 0;
+}
+
+.mutual-friends {
+  font-size: 13px;
+  color: #65676b;
+  margin: 0 0 8px 0;
+}
+
+.friend-request-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-confirm,
+.btn-delete {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-confirm {
+  background-color: #1877f2;
+  color: white;
+}
+
+.btn-confirm:hover {
+  background-color: #166fe5;
+}
+
+.btn-delete {
+  background-color: #e4e6eb;
+  color: #050505;
+}
+
+.btn-delete:hover {
+  background-color: #d8dadf;
+}
+
+/* Birthdays */
+.birthday-item {
+  display: flex;
+  gap: 12px;
+  padding: 8px;
+  align-items: flex-start;
+}
+
+.birthday-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.birthday-item p {
+  margin: 0;
+  font-size: 15px;
+  color: #050505;
+  line-height: 20px;
+}
+
+/* Contacts */
+.contacts-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background-color: #e4e6eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #65676b;
+  transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: #d8dadf;
+}
+
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.contact-item:hover {
+  background-color: #e4e6eb;
+}
+
+.contact-avatar-wrapper {
+  position: relative;
+  width: 36px;
+  height: 36px;
+}
+
+.contact-avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.online-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #31a24c;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.contact-name {
+  font-size: 15px;
+  color: #050505;
+  font-weight: 500;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background-color: #e4e6eb;
+  margin: 8px 8px;
+}
+
+@media (max-width: 1250px) {
+  .right-sidebar {
+    display: none;
+  }
+}

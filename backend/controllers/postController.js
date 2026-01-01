@@ -196,3 +196,65 @@ exports.likePost = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+// @desc    Pin/Unpin post
+// @route   POST /api/posts/:postId/pin
+// @access  Private
+exports.pinPost = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    // Check if user owns the post
+    if (post.user.toString() !== req.userId) {
+      return res.status(403).json({ message: 'Not authorized' });
+    }
+
+    post.pinned = !post.pinned;
+    await post.save();
+
+    res.json({ pinned: post.pinned, message: post.pinned ? 'Post pinned' : 'Post unpinned' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// @desc    Save/Unsave post
+// @route   POST /api/posts/:postId/save
+// @access  Private
+exports.savePost = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+    const User = require('../models/User');
+    const user = await User.findById(req.userId);
+
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    const saveIndex = post.savedBy.indexOf(req.userId);
+    const userSaveIndex = user.savedPosts.indexOf(req.params.postId);
+
+    if (saveIndex > -1) {
+      // Unsave
+      post.savedBy.splice(saveIndex, 1);
+      user.savedPosts.splice(userSaveIndex, 1);
+    } else {
+      // Save
+      post.savedBy.push(req.userId);
+      user.savedPosts.push(req.params.postId);
+    }
+
+    await post.save();
+    await user.save();
+
+    res.json({ saved: saveIndex === -1, message: saveIndex === -1 ? 'Post saved' : 'Post unsaved' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
