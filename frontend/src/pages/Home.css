@@ -1,0 +1,19 @@
+.home-container {
+  background-color: #f0f2f5;
+  min-height: calc(100vh - 56px);
+}
+
+.home-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.loading, .no-posts {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  color: #65676b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
